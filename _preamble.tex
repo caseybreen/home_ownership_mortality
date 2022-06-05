@@ -39,7 +39,7 @@
 \usepackage{pdfpages}
 \definecolor{newcolor}{rgb}{0.45,0.51,0.87}
 \usepackage[colorlinks = true,
-            linkcolor = black,
+            linkcolor = blue,
             urlcolor  = blue,
             citecolor = olive,
             anchorcolor = black]{hyperref}
@@ -158,4 +158,29 @@
 \newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
 \hspace{-2.5pt}}
 \newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
+
+
+
+%% "clever" reference package 
+\usepackage[nameinlink, capitalize, noabbrev]{cleveref}
+\Crefname{appsec}{appendix}{appendices}
+
+%% custom command for adding in figure / table place holders
+\newcommand\PlaceInsert[1]{%
+  \begin{center}
+  \framebox{\cref{#1} about here.}
+  \end{center}
+\bigskip}
+  
+
+% %% bibliography 
+% \usepackage{babel}% Recommended
+% \usepackage{csquotes}% Recommended
+% \usepackage[style=apa]{biblatex}
+% \addbibresource{bunmd_paper.bib} % Syntax for version >= 1.2
+% \bibliography{<mybibfile>}% ONLY selects .bib file; syntax for version <= 1.1b
+
+\usepackage[margin = 1in]{geometry}
+\usepackage{pdflscape} % to make rotate landscape page
+
 
