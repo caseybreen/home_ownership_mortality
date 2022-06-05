@@ -1,0 +1,107 @@
+In order to illustrate our approach, we show how it is possible to
+obtain consistent estimates of the effect of education on longevity,
+using different data sets with different amounts of truncation. We chose education
+as our substantive example because of a large literature estimating the association 
+between education and longevity.~\citet{rogers_educational_2010} published the estimates of U.S. adult mortality risk by educational degree, including post-secondary degrees. %This study investigated educational-based mortality differentials for three different grouped cohorts: Good Warriors (1909-1928), Lucky Few (1929-1945), and the Baby Boom and Gen X (1946-1982).
+Recently,~\citet{halpern-manners_effects_2020} used an internal version of the Numident and DMF linked to the 1940 census to estimate association between education and longevity. Additionally, the authors used a sibling-based fixed effect strategy to causally identify the effect of education on longevity. ~\citet{lleras-muney_association_2020} estimated the educational gradient across states using both the untruncated Census-Tree dataset\todo{footnote} and the truncated CenSoc-Numident dataset, finding the double-truncation of the CenSoc-Numident downwardly biased estimates of the education gradient by a factor of nearly 4. 
+
+\todo{Add note showing marginal effect}  
+
+We fit the model described by equations (\ref{trunc_mle_eq}) and
+(\ref{ph_educ_eq}) to two different CenSoc data sets \citep{goldstein_censoc_2021}. The first is
+based on Social Security death records in the Death Master File (DMF), and
+contains nearly complete information for men dying aged 65 from 1975
+to 2005. The second is based on more recently released Numident data
+provided through the National Archives. This includes more detailed
+information but has high coverage for men over age 65 for a more
+limited period, from 1988 to 2005. The two datasets overlap to a large
+degree, since most deaths in the Numident also occur in the Death
+Master File, so we would expect quite similar estimates to come from
+both datasets. 
+
+Figure 2 compares the potentially biased results of regression on age
+at death to the MLE approach that accounts for truncation.
+
+\begin{figure}[h]
+	\includegraphics[width=1.05\textwidth]{figs/fig2-education_gradient_example.png}
+	\caption{Association Between Education (Years) and Longevity, using two methods. Comparison of regression on age at death (red) to the maximum likelihood approach (blue). Results demonstrate downwardly biased coefficients for regression on age at death because truncation is not accounted for. \todo{add note on how we translated hazards ratios into e65. Marginal effect of hazard ratio evaluated at ...}}
+\end{figure}
+
+The regressions on age of death for person $i$ have the form
+$$
+\mbox{age\_at\_death}_i = \beta_0 + \gamma_t t_i + \beta_E E_i +
+\epsilon_i,
+$$
+where $\beta_0$ is a general intercept, $\gamma_t$ is the intercept
+for individuals born in year $t$, and $\beta_E$ is the additive
+effect of an additional year of schooling on age at death.
+
+This regression accounts for the composition of birth cohorts, which
+is important to include, since with fixed calendar years of
+observation, people born earlier in time will be observed dying at
+older ages. However, the effect $\beta_E$ will be downwardly biased if
+there is limited age window of observation.
+
+In this example, we analyze cohorts born from 1905 to 1914. This
+minimizes truncation in the death records (above age 65) observed in
+the DMF, which includes records from 1975 to 2005. For the birth year
+of 1910, the DMF will include records from ages 65 to 95. In contrast,
+the age window covered by the Numident data, which includes records from 1988 
+to 2005, will be more narrow. For the cohort of 1910, it will cover ages 78 to 95.
+
+The estimates shown in red are from the regression on age at
+death. Because they don't account for truncation, the estimates based
+on a narrower age range are biased downwards. Whereas the
+estimate from the wide-coverage DMF is about 0.2 years of increased
+longevity at age 65, the estimate from Numident is about half this
+size, or about 0.1.  In order to check to see if truncation
+differences were responsible for the difference in regression
+estimates, we artificially truncated the DMF data to the same year
+coverage as the Numident. Comparing the estimates in red in the 2nd
+column (from the DMF truncated to 1988 to 2005) and 3rd column (from
+Numident for the same years), we see that they now give similar
+estimates of about 0.1.
+
+The blue estimates show the estimates from the Gompertz proportional
+hazards model. In order to allow comparison with the regression model,
+we have re-calculated the estimated proportional hazards effects in
+terms of remaining life expectancy at age 65. Now the estimates from
+all three sources are broadly consistent, with overlapping uncertainty
+intervals.
+
+Our conclusions from these preliminary results are that for the CenSoc
+data sets,
+
+\begin{enumerate}
+
+\item Regression on age at death produces downwardly biased longevity
+  effects over age 65 with truncated data.
+
+\item The magnitude of this bias depends on the degree of
+  truncation.
+
+\item It is possible to obtain unbiased estimates using maximum
+  likelihood approaches that explicitly account for
+  truncation. We obtain similar estimates for the nearly untruncated
+  data (DMF,  1975-2005), the narrower coverage data (Numident
+  1988-2005), and the artificially truncated data (DMF, 1988-2005).
+  
+\end{enumerate}
+
+\todo{add more full section on this}
+
+The above analysis demonstrates that estimation that accounts for truncation can create consistent estimates across the CenSoc data. One can also compare these estimates to those from other analyses. To compare with the Rogers paper, the most direct comparison is to 
+
+\subsection{Educational Gradient over time} 
+
+
+To estimate the change in the educational gradient over time, we look at birth cohorts of 1905-1914. We restrict to ages of 70-85 to avoid confounding age effects (e.g., hazards not being proportional). We then fit separate models on each cohort, adjusting for the differential truncation window due to restricting to deaths occurring between the ages of 70-85. 
+
+Figure~\ref{fig:educ_over_time} shows completing high school is associated with an increasingly large mortality advantage over time. In 1905, completing high school was associated with a hazard ratio of 0.77 (95\% CI: 0.718, 0.825) compared to the baseline. In 1914, completing high school was associated with a hazard ratio of 0.68 (95\% CI: 0.503, 0.660). 
+
+\begin{figure}[h]
+\centering 
+	\includegraphics[width = 1\textwidth]{figs/hazard_ratios_educational_degree.png}
+	\caption{Decreasing hazard ratios over time for the cohorts of 1905 to 1914 (reference group is individuals who have not completed high school).}
+	\label{fig:educ_over_time}
+\end{figure}

@@ -1,0 +1,11 @@
+\todo{Reorganize this section to highlight difference between econometrics and biostats lit. And highlight what we're doing that's new.} 
+
+Doubly-truncated datasets lack information on survivorship or population denominators, which measure exposure to risk. This precludes the use of use of conventional regression techniques or standard survival analysis methods. For example, techniques to describe the effect of covariates on mortality, such as cox-proportional hazards models and simple linear regression on age at death, are biased in the presence of double truncation~\citep{greene_econometric_2003-1, lin_robust_1989-1, rennert_cox_2018}.
+
+An econometrics literature introduced methods for estimating mortality differentials with censored or doubly truncated datasets.~\citet{tobin_estimation_1958} introduced the term limited dependent variable to refer to variables whose ranges are restricted in some way. A simple example of the limited dependent variable problem, the case of truncated normally distributed random variable, is described in~\citet{greene_econometric_2003}. Our solution is a two-sided application of this problem that assumes an underlying Gompertz distribution rather than a Gaussian distribution. In contrast to existing literature on parametric regression, our approach is particularly useful in the case of mortality estimation, where there is reason to assume a Gompertzian form to the data and where each individual can have their own truncation points.
+
+A growing methodological stream of survival analysis research has introduced methods for adjusting for double truncation. The first nonparametric maximum likelihood estimation methods (NPMLE) for doubly truncated survival data survival data was introduced by~\citet{efron_nonparametric_1999}. Recently, ~\citet{rennert_cox_2018} introduced methods for a cox regression model with doubly truncated data, which used a weighting estimation approach to estimate hazard ratios following those of the standard cox proportional hazards model. This approach weights each subject by the inverse probability that they were included in the sample (not truncated) based on the their observed survival times. 
+
+%The majority of this literature deals with the estimation of survival curves, with a smaller econometric literature focusing on regression. 
+
+

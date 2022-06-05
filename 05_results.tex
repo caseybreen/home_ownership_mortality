@@ -1,0 +1,15 @@
+Our main results is shown in Figure~\ref{fig:home_ownership_models}. We observe a clear positive association between home ownership and longevity in our baseline model. Owning a home in 1940 is associated with a mortality advantage of 0.74 years. When we adjust for covariates (education, race, occupation, and urbanicity), the results are slightly attenuated: the mortality advantage is 0.72 years. When we include sibling fixed effects to account for shared conditions in childhood, genetics, and other hard-to-measure confounders, we still see a statistically significant mortality advantage of 0.52 years. 
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figs/home_ownership_models.pdf}
+  \caption{The association between owning a home and longevity from three regression models. The baseline model adjust only for birth cohort (left), the baseline and controls estimate adjusts for education, race, occupation, and urban-rural (middle), and the full model adjusts for covariates and family fixed effects (right).}
+  \label{fig:home_ownership_models}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{figs/home_ownership_dag.pdf}
+  \caption{Causal pathways between home ownership and mortality.}
+  \label{fig:causal_pathways}
+\end{figure}

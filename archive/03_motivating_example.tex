@@ -1,0 +1,87 @@
+The mortality differences observed between groups will tend to be smaller when there is truncation of oldest and youngest ages. We illustrate this tendency using two examples. The first using simulated data allows visualization of the effect of truncation in a simple regression framework. The second, using ages of death of men and women born in 1900 in Sweden, shows the effect of truncation when comparing two groups.
+
+\paragraph{A regression example}
+
+The panels of Figure~\ref{regression_example_fig} below show the effect of a covariate on age at death, using simulated data drawn from normal distributions. The left panel shows the complete sample along with the estimated ``effect'' of the covariate (0.45). The right panel shows what happens if observations were limited to ages 75 to 85. We can see that truncation removes the earliest and latest deaths, which also tend to be at the extremes of the covariate. The result is a ``flattening'' of the estimated slope to 0.15, only about one-third of its ``true'' value.
+This is the classic ``attenuation'' of regression effects \citep[Chapter 19]{greene_econometric_2003}.
+
+
+\begin{figure}
+  \includegraphics[width=1.05\textwidth]{figs/flash_simu_fig.pdf}
+  \caption{Simulated example of regression on effect of covariate on death age based on full data (left) and truncated death ages only (right). The truncation reduces the estimated ``effect'' by about 2/3, from 0.45 to 0.15, in this example. Note: Simulation is sample of 100 individuals following  $y = 30 + 0.5x + \epsilon$, with $x \sim N(\mu = 100, \sigma = 5)$ and $\epsilon \sim N(\mu = 0, \sigma = 5)$}. \label{regression_example_fig}
+ \end{figure}
+\paragraph{An empirical example}
+
+For our second example, we turn to real mortality data comparing the ages of death of two groups, men and women death of men and women born in 1900 in Sweden, based on cohort life
+tables in the Human Mortality Database (HMD).  For this example, we focus on
+life expectancy at age 65. According to HMD, the average age of death
+for Swedish women who died after their 65th birthday was 82.7, and the
+average age for men was 79.1, a difference of 3.6 years.  The
+distribution of deaths over age 65 and the corresponding averages
+are shown in the top panel of the figure, with the count of
+deaths from the HMD cohort life table.
+
+\begin{figure}
+  \includegraphics[width=1.05\textwidth]{figs/fig-1_hmd_example_fig.pdf}
+  \caption{Swedish deaths over 65 for male and female cohorts born in
+    1900. Data is from the Human Mortality Database. The top panel
+    shows the full distribution and the mean ages of death. The middle
+    panel shows an artificially truncated age window covering ages 80
+    through 89 and the mean ages within this window. The bottom panel
+    shows the results of fitting a Gompertz curve to the truncated
+    observations using maximum likelihood and the estimates of the
+    implied untruncated means. The estimates are very close to the
+    actual values, and the estimated magnitude of the sex difference
+    in $e(65)$ is correct.}
+ \end{figure}
+
+Now we consider the case of what would happen if for some reason we
+only had access to death counts from 1980 to 1989 for these male and
+female cohorts. We would then have death counts only from age 80 to
+89, instead of all deaths above age 65. The middle panel highlights
+the counts of deaths in this narrower age window and shows the
+corresponding averages. Now, the longevity difference between women
+and men would appear to be only about 0.5 years, less than one-fifth
+of the difference in untruncated means. Truncation biases the
+differences, making them smaller.
+
+It is possible to account for truncation explicitly, using maximum
+likelihood estimation methods. Our approach, which we detail in the
+next section, allows a researcher to obtain unbiased estimates,
+even when death counts are available for a limited range of ages. The
+results of applying this method (assuming Gompertz mortality) is shown
+in the lower panel. We used the observed data from ages 80 to 89 
+to estimate the parameters of the Gompertz distribution. These
+estimated parameters were then used to describe the full distributions and
+their means. The dashed lines in the lower panel show the estimated full
+distribution (based only on the observations from age 80 to 89) and the
+corresponding (now unbiased) estimates of the means.
+
+In this example, our unbiased estimate of the difference between life
+expectancy at age 65, based only on observations from 80 to 89, is
+about 4.0 years. This is not exactly equal to the ``true'' value of
+3.6 years, but is clearly free of the strongly downwardly biased
+estimate of only 0.5 years shown in the middle panel.
+
+In theory, the maximum likelihood procedure will give unbiased
+estimates, as long as the distributional assumptions are correct. In
+practice, each estimate will be subject to the random effects of 
+finite population size. Additional error is generated by departures
+from the underlying distribution that is assumed -- in this case
+the Gompertz.
+
+This example illustrates our two main points:
+
+\begin{enumerate}
+  \item Estimation of group differences in average age of death will
+    be downwardly biased, often greatly, by truncation.
+
+  \item Estimates that account for truncation can correct for this
+    bias and provide a more accurate description of group differences.
+\end{enumerate}
+  
+These same points carry over from the comparison of the means of two
+groups to the more general case of multiple regression on age at
+death. In the case of regression, the estimates of ``effects'' on age
+at death will be biased toward zero, and accounting for
+truncation using maximimum likelihood aims to remove this bias.

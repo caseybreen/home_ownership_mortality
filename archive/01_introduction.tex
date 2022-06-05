@@ -1,0 +1,56 @@
+Increasingly, researchers have access to individual-level
+administrative mortality records. Often, as is the case with the
+publicly released Social Security Administrative mortality data, access 
+is only available for individuals who have died, without information on
+survivors. This situation of having ``deaths without  denominators''
+makes it impossible to calculate occurrence-exposure mortality rates
+and to use the usual tools of individual-level survival analysis.
+
+In this research, we present methods we have developed for estimating
+mortality rates from a limited age-window of death records. Our
+immediate application of these methods is to the CenSoc datasets which 
+link 1940 U.S. Census records on individual characteristics with
+Social Security death records~\citep{goldstein_censoc_2021}. However, the problem addressed by these
+methods is potentially applicable to other sources of population-level
+administrative mortality records. These include the Chilean mortality
+registry release of a death-only dataset for deaths occurring from
+2016-2021~\citep{chilean_ministry_of_health_mortality_2022, chang_changes_2022}, large scale death registration data from
+genealogical databases~\citep{otterstrom_genealogy_2013, kaplanis_quantitative_2018, koylu_connecting_2021}, centenarian databases such as the International Database on Longevity\footnotemark~\citep{belzile_human_2021}. Our methods may also have applications in non-human contexts, including studies that record only deaths such as the Medfly experiments of Carey and colleagues and approaches that estimate mortality from captured cohorts.  
+
+\footnotetext{These data are available here: \href{www.supercentenarians.org}{www.supercentenarians.org}}
+
+Our deaths-only approach may also be useful in contexts where differential linkage rates between groups affect the estimates of mortality based on surveys that have been linked to death indexes. Occurrence-exposure methods that depend on correct linkage of death records can incorrectly infer that a difficult-to-match person is a survivor, the so-called ``Methusala effect''~\citep{black_methuselah_2017}. 
+
+The situation we address is when we are able to count the 
+number of deaths for a limited range of ages for a cohort. For
+example, the Social Security ``Numident'' data publicly released by the
+U.S. National Archives contains nearly every record of people who died
+aged 65 and over from 1988 to 2005. For a very old cohort -- e.g.,
+those born in 1900 -- classic extinct cohort methods might allow
+traditional analysis and the reconstruction of the population at risk
+at each age. However, for most cohorts, we see only those who die,
+making it difficult to know how many people with what characteristics
+were alive at each age. Our approach is to take advantage of the
+distributional information of the limited ages we observe. Using
+maximum likelihood methods that include information on the ages at
+which each cohort is truncated allow us to infer mortality rates
+without observing the full population at risk. They also allow
+multivariate methods in which mortality rates depend on individual risk factors.  
+
+A crucial assumption of our method is that the age-distribution of deaths within the window of observation is proportional to the true underlying cohort life-tables. With linked data, this means that linkage rates may vary by group and by cohort, but within each group and cohort are assumed to be have no variability by age.  Changes in the completeness of death registration over time can distort the age-distribution of deaths observed for a cohort.  Migration can also distort the age-distribution of observed deaths. 
+
+In the CenSoc data, we address death registration completeness by applying weights that reproduce the national number of deaths by age and year. When studying immigrants, we limit observations to those that we know were present in the United States at the beginning of our observation window. Similar approaches should be taken when working with other data sets.
+
+The method we propose contrasts with the usual approach of comparing
+average ages of death within the observed age windows. Comparisons
+of truncated means will tend to understate the differences between groups. 
+Regression on age at death of truncated samples will be similarly
+biased, tending to make the effects of covariates smaller than they
+would be for the untruncated cohort.
+
+For intuition, if we compare the heights of men and women, restricting
+the sample to people between 5'8'' and 5'10'', we would find a smaller
+difference in average heights by sex within this restricted sample
+than within the general population. Similarly, if we observe ages of
+death in only a limited age-window, the apparent differences in mean
+age of death will be smaller than if the data were not truncated.

@@ -1,0 +1,93 @@
+%% input from preamble — this includes most packages 
+%% and other misc options 
+\input{_preamble}
+
+%% blind manuscript (for journal submission)
+%% set counter to 1 for "blinded" 
+\newcommand{\blind}{0}
+
+\newcommand{\titl}{
+\LARGE{The Mortality Consequences of Home Ownership}
+}
+
+\if1\blind {
+  \title{\titl} 
+  \date{\today}
+  }\fi
+
+\if0\blind {
+  \title{\titl\thanks{For helpful feedback and background, the author would like to thank members of the CenSoc Working Group. The author acknowledges financial support from NIA grant R01AG058940.
+ }}
+
+%% Authors 
+\author{Casey F. Breen\thanks{Department of Demography, University of California, Berkeley. \href{mailto:caseybreen@berkeley.edu}{caseybreen@berkeley.edu}.}}
+ \date{Draft Version:
+ \today
+  }
+    }\fi
+    
+%% bibliography
+\usepackage[authoryear]{natbib}
+\bibliographystyle{apsr}
+\newcommand{\citepos}[1]{\citeauthor{#1}'s (\citeyear{#1})} %
+
+%% begin document 
+\begin{document}
+\def\spacingset#1{\renewcommand{\baselinestretch}%
+{#1}\small\normalsize} \spacingset{1}
+    
+    \maketitle\thispagestyle{empty}
+  
+ %% create abstract 
+\begin{abstract} %
+  
+Housing is a key social determinant of health and well-being. However, relatively little is known about whether home owners live longer than their renter counterparts. Using large-scale linked administrative data, we produce the first US-based estimates of the association between home-ownership and longevity. We then use a sibling-based identification strategy to estimate the causal effect of home ownership on longevity in the first part of the twentieth century, finding owning a home has an effect of over half a year on longevity. 
+ 
+% \vspace{10pt} 
+
+% \textbf{Keywords:} Mortality Estimation, Double Truncation
+ \end{abstract}
+ 
+\noindent%
+\vfill
+
+%% table of contents 
+% \clearpage 
+% \tableofcontents
+% \clearpage
+
+\spacingset{1.5} %
+
+%% set line numbers 
+% \linenumbers
+
+\section{Introduction}\label{Introduction} 
+\input{01_introduction}
+
+\section{Background}\label{Background} 
+\input{02_background}
+
+\section{Data}\label{data} 
+\input{03_data}
+
+\section{Methods}\label{methods} 
+\input{04_methods}
+
+\section{Results}\label{results} 
+\input{05_results}
+
+\input{06_discussion}
+
+
+
+
+
+%% Bibliography 
+\clearpage 
+\begin{singlespace}
+\bibliography{home-ownership.bib}
+\end{singlespace}
+
+
+
+\end{document}
