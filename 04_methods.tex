@@ -1,16 +1,18 @@
-For our preliminary analysis, we fit linear regression models on age at death. We include birth-year fixed effects to control for the different distribution of birth years across population subgroups. Because the CenSoc-DMF only contains deaths for the doubly-truncated window of 1975-2005, the magnitude of the reported differences across groups will be smaller than if we had the complete window of deaths. We fit a baseline model of the form: 
+To estimate the association between home ownership and longevity, we fit linear regression models on age at death. Because the CenSoc-DMF only contains deaths for the doubly-truncated window of 1975-2005, the magnitude of the reported differences across groups will be smaller than if we had the complete window of deaths. Further, for each birth cohort we will observe a different window of ages of death. To account for this, we include birth-year fixed effects to control for the different distribution of birth years across population subgroups~\citep{breen}. We fit a baseline model of the form: 
 %
 \begin{equation}
     D_i = \beta_0 + \lambda_t + \delta_{own}
 \end{equation}
 %
-where $D_i$ is age of death, $\beta_0$ is the general intercept, $\lambda_t$ is a fixed effect for a given year of birth $t$, and $\delta_{own}$ is a dummy variable for whether an individual is a renter or a home owner. Our full model adjust for sociodemographic characteristics and includes family fixed effects. 
+where $D_i$ is age of death, $\beta_0$ is the general intercept, $\lambda_t$ is a fixed effect for a given year of birth $t$, and $\delta_{own}$ is a dummy variable for whether an individual is a renter or a home owner. Our full model adjusts for sociodemographic characteristics and includes family fixed effects 
 %
 \begin{equation}
-    D_i = \beta_0 + \lambda_t + \delta_{own} + Z_i\boldsymbol{\beta} + \Omega_{family}
+    D_i = \beta_0 + \lambda_t + \delta_{own} + Z_i\boldsymbol{\beta} + \Omega_{family}, 
 \end{equation}
 %
-$Z_i\boldsymbol{\beta}$ is the set of control variables and $\Omega_{family}$ is a family fixed effect. To adjust for the truncation bias, an inflation factor of 1.3 is necessary for all effect sizes \citep{goldstein_censoc_2021}.
+where $Z_i\boldsymbol{\beta}$ is the vector of adjustment variables and $\Omega_{family}$ is a family fixed effect. Our model adjusts for education, race, occupation, urbanicity, marital status, and birth order. We adjust for birth order to account for the historical practice of having the first-born brother inherit the farm. 
+
+To adjust for the truncation bias, an inflation factor of 1.3 is necessary for all effect sizes \citep{goldstein_censoc_2021}.
 
 
 
